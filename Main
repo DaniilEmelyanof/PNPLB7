@@ -1,0 +1,25 @@
+package PNPLB7;
+
+import java.util.ArrayList;
+
+public class Main
+{
+    public static void main(String[] args)
+    {
+        ArrayList<AbstractNode> list_1 = new ArrayList<AbstractNode>();
+        list_1.add(new SimpleNode(true));
+        list_1.add(new NegationNode(new SimpleNode(false)));
+        list_1.add(new NegationNode(new SimpleNode(true)));
+
+        AbstractNode first = new ImplicationNode(list_1);
+
+        ArrayList<AbstractNode> list_2 = new ArrayList<AbstractNode>();
+        list_2.add(new NegationNode(new SimpleNode(true)));
+        list_2.add(new NegationNode(new SimpleNode(false)));
+
+        AbstractNode second = new NegationNode(new ImplicationNode(list_2));
+
+        System.out.println("The first expression is: "+first+"\tValue is: "+first.calculate());
+        System.out.println("The second expression is: "+second+"\tValue is: "+second.calculate());
+    }
+}
