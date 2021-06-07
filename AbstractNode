@@ -1,0 +1,6 @@
+package PNPLB7;
+
+public interface AbstractNode 
+{
+    boolean calculate();
+}
