@@ -1,0 +1,48 @@
+package PNPLB7;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class ImplicationNode implements AbstractNode
+{
+    private final Collection<AbstractNode> list;
+
+    public ImplicationNode( Collection<AbstractNode> list)
+    {
+        this.list = list;
+    }
+
+    public boolean implication (boolean A, boolean B)
+    {
+        if (A)
+            return B;
+        else
+            return true;
+    }
+
+    @Override
+    public boolean calculate()
+    {
+        ArrayList<Boolean> list_boolean = new ArrayList<Boolean>();
+        for (AbstractNode node:list)
+            list_boolean.add(node.calculate());
+        boolean result = list_boolean.get(0);
+        for (int i = 1; i < list_boolean.size(); i++)
+            result = implication(result,list_boolean.get(i));
+        return result;
+    }
+
+    @Override
+    public String toString()    {
+        String result = "";
+        boolean first = true;
+        for (AbstractNode node:list)
+        {
+            if(!first)
+                result +="=>";
+            first = false;
+            result += node;
+        }
+        return result;
+    }
+}
