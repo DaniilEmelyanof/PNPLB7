@@ -1,0 +1,23 @@
+package PNPLB7;
+
+public class NegationNode implements AbstractNode  
+{
+    public final AbstractNode node;
+
+    public NegationNode(AbstractNode node)
+    {
+        this.node = node;
+    }
+
+    @Override
+    public boolean calculate()
+    {
+        return !node.calculate();
+    }
+
+    @Override
+    public String toString()
+    {
+        return "!("+node+")";
+    }
+}
